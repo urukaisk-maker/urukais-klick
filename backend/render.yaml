@@ -1,0 +1,55 @@
+services:
+  - type: web
+    name: urukais-klick-backend
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile.render
+    dockerContext: .
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: urukais-klick-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: urukais-klick-redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 30
+      - key: MINIO_ACCESS_KEY
+        value: urukais
+      - key: MINIO_SECRET_KEY
+        generateValue: true
+      - key: MINIO_BUCKET_NAME
+        value: urukais-klick
+      - key: MINIO_ENDPOINT
+        value: https://minio.urukais-klick.com
+      - key: MEILISEARCH_URL
+        fromService:
+          type: meilisearch
+          name: urukais-klick-meilisearch
+          property: host
+      - key: MEILISEARCH_API_KEY
+        generateValue: true
+      - key: YOUTUBE_API_KEY
+        value: tu-youtube-api-key
+
+databases:
+  - name: urukais-klick-db
+    databaseName: urukais_klick
+    user: urukais
+
+redis:
+  - name: urukais-klick-redis
+    plan: free
+    maxmemoryPolicy: allkeys-lru
+
+meilisearch:
+  - name: urukais-klick-meilisearch
+    plan: free
