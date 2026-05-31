@@ -71,7 +71,11 @@ urukais-klick/
 
 ```bash
 # Clonar el repositorio
+<<<<<<< HEAD
 git clone https://github.com/urukaisk-maker/urukais-klick.git
+=======
+git clone https://github.com/manuelcasimiro/urukais-klick.git
+>>>>>>> 02bc4905106ef54a444d5f4eb3260795019742f4
 cd urukais-klick
 
 # Iniciar todos los servicios
@@ -143,7 +147,7 @@ Este proyecto es software libre y está disponible bajo licencia MIT.
 
 - **Desarrollador**: Manuel Casimiro Carrasco
 - **Fecha**: 31 de mayo de 2026
-- **Email**: contacto@urukais-klick.org
+- **Email**: urukaisk@gmail.com
 
 ## Filosofía
 
