@@ -143,7 +143,7 @@ Este proyecto es software libre y está disponible bajo licencia MIT.
 
 - **Desarrollador**: Manuel Casimiro Carrasco
 - **Fecha**: 31 de mayo de 2026
-- **Email**: contacto@urukais-klick.org
+- **Email**: urukaisk@gmail.com
 
 ## Filosofía
 
