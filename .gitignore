@@ -78,3 +78,6 @@ meilisearch_data/
 
 # PostgreSQL
 postgres_data/
+
+# Flutter SDK
+SDK/flutter/
