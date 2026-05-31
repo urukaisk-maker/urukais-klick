@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import LiveRoomCard from './LiveRoomCard'
 
 interface Room {
