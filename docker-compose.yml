@@ -1,0 +1,107 @@
+version: '3.8'
+
+services:
+  # Base de datos PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: urukais-postgres
+    environment:
+      POSTGRES_USER: urukais
+      POSTGRES_PASSWORD: urukais123
+      POSTGRES_DB: urukais_klick
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - urukais-network
+
+  # Redis para caché
+  redis:
+    image: redis:7-alpine
+    container_name: urukais-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - urukais-network
+
+  # Meilisearch para búsqueda
+  meilisearch:
+    image: getmeili/meilisearch:v1.5
+    container_name: urukais-meilisearch
+    environment:
+      MEILI_MASTER_KEY: urukais-master-key
+    ports:
+      - "7700:7700"
+    volumes:
+      - meilisearch_data:/meili_data
+    networks:
+      - urukais-network
+
+  # MinIO para almacenamiento de audio (S3-compatible)
+  minio:
+    image: minio/minio:latest
+    container_name: urukais-minio
+    environment:
+      MINIO_ROOT_USER: urukais
+      MINIO_ROOT_PASSWORD: urukais123
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - urukais-network
+
+  # Backend FastAPI
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: urukais-backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://urukais:urukais123@postgres:5432/urukais_klick
+      REDIS_URL: redis://redis:6379
+      MEILISEARCH_URL: http://meilisearch:7700
+      MINIO_ENDPOINT: minio:9000
+      MINIO_ACCESS_KEY: urukais
+      MINIO_SECRET_KEY: urukais123
+      MINIO_BUCKET: urukais-audio
+      SECRET_KEY: urukais-secret-key-dev
+      YOUTUBE_API_KEY: AIzaSyDm7cm8O9VeNUWfJvooXxUdEEcugzonVjU
+      ALLOWED_ORIGINS: '["http://localhost:3000", "http://localhost:8080"]'
+    depends_on:
+      - postgres
+      - redis
+      - meilisearch
+      - minio
+    networks:
+      - urukais-network
+
+  # Frontend Web Next.js
+  frontend-web:
+    build:
+      context: ./frontend-web
+      dockerfile: Dockerfile
+    container_name: urukais-frontend-web
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - urukais-network
+
+networks:
+  urukais-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  meilisearch_data:
+  minio_data:

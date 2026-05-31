@@ -1,0 +1,14 @@
+{
+  "version": "1",
+  "credentials": {
+    "accessKey": "urukais",
+    "secretKey": "urukais123"
+  },
+  "region": "us-east-1",
+  "browser": "on",
+  "logger": {
+    "console": {
+      "enable": true
+    }
+  }
+}

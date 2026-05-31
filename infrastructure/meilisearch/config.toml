@@ -1,0 +1,11 @@
+# Configuración de Meilisearch para Urukais Klick
+
+[env]
+# Clave maestra
+MEILI_MASTER_KEY = "urukais-master-key"
+
+# Entorno
+MEILI_ENV = "development"
+
+# Puerto
+MEILI_HTTP_ADDR = "0.0.0.0:7700"
