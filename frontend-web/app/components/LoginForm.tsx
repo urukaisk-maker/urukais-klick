@@ -18,16 +18,16 @@ export default function LoginForm({ onLogin, onRegister, onAnonymous }: LoginFor
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 p-4">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="glass-effect rounded-3xl shadow-2xl p-8 w-full max-w-md card-hover">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Urukais Klick</h1>
-          <p className="text-gray-600">Descubrimiento musical gratuito</p>
+          <h1 className="text-4xl font-bold gradient-text mb-2">Urukais Klick</h1>
+          <p className="text-white/80 text-lg">Descubrimiento musical gratuito</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
               Email
             </label>
             <input
@@ -35,14 +35,14 @@ export default function LoginForm({ onLogin, onRegister, onAnonymous }: LoginFor
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-transparent text-white placeholder-white/50 backdrop-blur-sm"
               placeholder="tu@email.com"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
               Contraseña
             </label>
             <input
@@ -50,7 +50,7 @@ export default function LoginForm({ onLogin, onRegister, onAnonymous }: LoginFor
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-transparent text-white placeholder-white/50 backdrop-blur-sm"
               placeholder="••••••••"
               required
             />
@@ -58,25 +58,25 @@ export default function LoginForm({ onLogin, onRegister, onAnonymous }: LoginFor
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-semibold"
+            className="w-full btn-gradient text-white py-3 rounded-xl font-semibold text-lg"
           >
             Iniciar Sesión
           </button>
         </form>
 
-        <div className="mt-6 space-y-3">
+        <div className="mt-8 space-y-4">
           <button
             onClick={onAnonymous}
-            className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition font-semibold"
+            className="w-full bg-white/10 text-white py-3 rounded-xl hover:bg-white/20 transition font-semibold border border-white/20 backdrop-blur-sm"
           >
             🎲 Entrar como Anónimo
           </button>
 
           <div className="text-center">
-            <span className="text-gray-600">¿No tienes cuenta?</span>
+            <span className="text-white/80">¿No tienes cuenta?</span>
             <button
               onClick={onRegister}
-              className="text-indigo-600 font-semibold ml-1 hover:underline"
+              className="text-white font-semibold ml-1 hover:underline"
             >
               Regístrate
             </button>

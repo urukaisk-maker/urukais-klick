@@ -73,20 +73,24 @@ export default function AudioPlayer({ audioUrl, title, artist, coverUrl, onKlick
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 max-w-2xl mx-auto">
+    <div className="glass-effect rounded-2xl p-6 max-w-4xl mx-auto backdrop-blur-xl">
       <audio ref={audioRef} src={audioUrl} />
       
       <div className="flex items-center gap-4 mb-4">
-        {coverUrl && (
+        {coverUrl ? (
           <img
             src={coverUrl}
             alt={title}
-            className="w-16 h-16 rounded-lg object-cover"
+            className="w-20 h-20 rounded-2xl object-cover shadow-lg"
           />
+        ) : (
+          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
+            <span className="text-white text-3xl">🎵</span>
+          </div>
         )}
         <div className="flex-1">
-          <h3 className="font-semibold text-lg">{title}</h3>
-          {artist && <p className="text-gray-600 text-sm">{artist}</p>}
+          <h3 className="font-bold text-white text-xl">{title}</h3>
+          {artist && <p className="text-white/70 text-sm">{artist}</p>}
         </div>
       </div>
 
@@ -97,19 +101,19 @@ export default function AudioPlayer({ audioUrl, title, artist, coverUrl, onKlick
           max={duration || 0}
           value={currentTime}
           onChange={handleSeek}
-          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+          className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
         />
-        <div className="flex justify-between text-sm text-gray-600 mt-1">
+        <div className="flex justify-between text-sm text-white/70 mt-1">
           <span>{formatTime(currentTime)}</span>
           <span>{formatTime(duration)}</span>
         </div>
       </div>
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <button
             onClick={togglePlay}
-            className="bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition"
+            className="btn-gradient text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-transform"
           >
             {isPlaying ? '⏸️ Pausar' : '▶️ Reproducir'}
           </button>
@@ -117,15 +121,15 @@ export default function AudioPlayer({ audioUrl, title, artist, coverUrl, onKlick
           {onKlick && (
             <button
               onClick={onKlick}
-              className="bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition"
+              className="bg-white/20 text-white px-6 py-3 rounded-full hover:bg-white/30 transition font-semibold border border-white/20 backdrop-blur-sm"
             >
               👏 Klick
             </button>
           )}
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-sm">🔊</span>
+        <div className="flex items-center gap-3">
+          <span className="text-xl text-white/80">🔊</span>
           <input
             type="range"
             min="0"
@@ -133,7 +137,7 @@ export default function AudioPlayer({ audioUrl, title, artist, coverUrl, onKlick
             step="0.1"
             value={volume}
             onChange={handleVolumeChange}
-            className="w-24 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            className="w-32 h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
           />
         </div>
       </div>

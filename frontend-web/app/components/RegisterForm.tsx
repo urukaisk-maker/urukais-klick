@@ -49,16 +49,16 @@ export default function RegisterForm({ onRegister, onBack }: RegisterFormProps) 
 
   if (step === 1) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="glass-effect rounded-3xl shadow-2xl p-8 w-full max-w-md card-hover">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Crear Cuenta</h1>
-            <p className="text-gray-600">Únete a Urukais Klick</p>
+            <h1 className="text-4xl font-bold gradient-text mb-2">Crear Cuenta</h1>
+            <p className="text-white/80 text-lg">Únete a Urukais Klick</p>
           </div>
 
-          <form onSubmit={handleBasicSubmit} className="space-y-4">
+          <form onSubmit={handleBasicSubmit} className="space-y-6">
             <div>
-              <label htmlFor="alias" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="alias" className="block text-sm font-medium text-white mb-2">
                 Alias
               </label>
               <input
@@ -66,14 +66,14 @@ export default function RegisterForm({ onRegister, onBack }: RegisterFormProps) 
                 id="alias"
                 value={alias}
                 onChange={(e) => setAlias(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-transparent text-white placeholder-white/50 backdrop-blur-sm"
                 placeholder="Tu nombre de usuario"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
                 Email
               </label>
               <input
@@ -81,14 +81,14 @@ export default function RegisterForm({ onRegister, onBack }: RegisterFormProps) 
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-transparent text-white placeholder-white/50 backdrop-blur-sm"
                 placeholder="tu@email.com"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
                 Contraseña
               </label>
               <input
@@ -96,7 +96,7 @@ export default function RegisterForm({ onRegister, onBack }: RegisterFormProps) 
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-transparent text-white placeholder-white/50 backdrop-blur-sm"
                 placeholder="••••••••"
                 required
               />
@@ -104,16 +104,16 @@ export default function RegisterForm({ onRegister, onBack }: RegisterFormProps) 
 
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-semibold"
+              className="w-full btn-gradient text-white py-3 rounded-xl font-semibold text-lg"
             >
               Continuar →
             </button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-8 text-center">
             <button
               onClick={onBack}
-              className="text-gray-600 hover:text-gray-800"
+              className="text-white/80 hover:text-white transition"
             >
               ← Volver
             </button>
@@ -124,11 +124,11 @@ export default function RegisterForm({ onRegister, onBack }: RegisterFormProps) 
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 p-4">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="glass-effect rounded-3xl shadow-2xl p-8 w-full max-w-md card-hover">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">¿Cómo te sientes?</h1>
-          <p className="text-gray-600">Selecciona hasta 3 estados de ánimo (seleccionados: {selectedMoods.length}/3)</p>
+          <h1 className="text-4xl font-bold gradient-text mb-2">¿Cómo te sientes?</h1>
+          <p className="text-white/80 text-lg">Selecciona hasta 3 estados de ánimo (seleccionados: {selectedMoods.length}/3)</p>
         </div>
 
         <div className="grid grid-cols-4 gap-3 mb-6">
@@ -136,14 +136,14 @@ export default function RegisterForm({ onRegister, onBack }: RegisterFormProps) 
             <button
               key={mood.id}
               onClick={() => toggleMood(mood.id)}
-              className={`p-4 rounded-xl text-center transition ${
+              className={`p-4 rounded-xl text-center transition-all duration-300 ${
                 selectedMoods.includes(mood.id)
-                  ? 'bg-indigo-600 text-white scale-105'
-                  : 'bg-gray-100 hover:bg-gray-200'
+                  ? 'btn-gradient text-white scale-110 shadow-lg'
+                  : 'bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm'
               }`}
             >
               <div className="text-3xl mb-1">{mood.emoji}</div>
-              <div className="text-xs">{mood.name}</div>
+              <div className="text-xs font-medium">{mood.name}</div>
             </button>
           ))}
         </div>
@@ -151,15 +151,15 @@ export default function RegisterForm({ onRegister, onBack }: RegisterFormProps) 
         <button
           onClick={handleMoodSubmit}
           disabled={selectedMoods.length === 0}
-          className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed"
+          className="w-full btn-gradient text-white py-3 rounded-xl font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
           Completar Registro
         </button>
 
-        <div className="mt-4 text-center">
+        <div className="mt-6 text-center">
           <button
             onClick={() => setStep(1)}
-            className="text-gray-600 hover:text-gray-800"
+            className="text-white/80 hover:text-white transition"
           >
             ← Atrás
           </button>

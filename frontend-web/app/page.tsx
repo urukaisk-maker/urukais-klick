@@ -87,16 +87,16 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-100">
+    <main className="min-h-screen">
       {/* Header */}
-      <header className="bg-white shadow-md sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-indigo-600">Urukais Klick</h1>
-          <nav className="flex gap-4">
-            <button onClick={() => setView('home')} className={`px-4 py-2 rounded-full transition ${view === 'home' ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:text-gray-800'}`}>Inicio</button>
-            <button onClick={() => setView('discovery')} className={`px-4 py-2 rounded-full transition ${view === 'discovery' ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:text-gray-800'}`}>Descubrir</button>
-            <button onClick={() => setView('social')} className={`px-4 py-2 rounded-full transition ${view === 'social' ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:text-gray-800'}`}>Social</button>
-            <button onClick={() => setView('live')} className={`px-4 py-2 rounded-full transition ${view === 'live' ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:text-gray-800'}`}>Live</button>
+      <header className="glass-effect sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          <h1 className="text-3xl font-bold gradient-text">Urukais Klick</h1>
+          <nav className="flex gap-2">
+            <button onClick={() => setView('home')} className={`px-6 py-2 rounded-full transition-all duration-300 ${view === 'home' ? 'btn-gradient text-white' : 'text-white hover:bg-white/20'}`}>Inicio</button>
+            <button onClick={() => setView('discovery')} className={`px-6 py-2 rounded-full transition-all duration-300 ${view === 'discovery' ? 'btn-gradient text-white' : 'text-white hover:bg-white/20'}`}>Descubrir</button>
+            <button onClick={() => setView('social')} className={`px-6 py-2 rounded-full transition-all duration-300 ${view === 'social' ? 'btn-gradient text-white' : 'text-white hover:bg-white/20'}`}>Social</button>
+            <button onClick={() => setView('live')} className={`px-6 py-2 rounded-full transition-all duration-300 ${view === 'live' ? 'btn-gradient text-white' : 'text-white hover:bg-white/20'}`}>Live</button>
           </nav>
         </div>
       </header>
@@ -104,20 +104,26 @@ export default function Home() {
       {/* Content */}
       <div className="p-4 pb-32">
         {view === 'home' && (
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Bienvenido a Urukais Klick</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-4">🎯 Descubre</h3>
-                <p className="text-gray-600">Música personalizada basada en tus emociones</p>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-5xl font-bold text-white mb-4">Bienvenido a Urukais Klick</h2>
+              <p className="text-xl text-white/80">Descubre música, conecta con artistas y apoya el talento</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="glass-effect p-8 rounded-2xl card-hover">
+                <div className="text-4xl mb-4">🎯</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Descubre</h3>
+                <p className="text-white/80">Música personalizada basada en tus emociones</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-4">👥 Conecta</h3>
-                <p className="text-gray-600">Salas en directo y comunidad</p>
+              <div className="glass-effect p-8 rounded-2xl card-hover">
+                <div className="text-4xl mb-4">👥</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Conecta</h3>
+                <p className="text-white/80">Salas en directo y comunidad</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-4">👏 Apoya</h3>
-                <p className="text-gray-600">Klicks gratuitos a tus artistas</p>
+              <div className="glass-effect p-8 rounded-2xl card-hover">
+                <div className="text-4xl mb-4">👏</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Apoya</h3>
+                <p className="text-white/80">Klicks gratuitos a tus artistas</p>
               </div>
             </div>
             <DiscoveryFeed tracks={tracks} onPlayTrack={handlePlayTrack} onKlickTrack={handleKlickTrack} />
@@ -125,22 +131,31 @@ export default function Home() {
         )}
 
         {view === 'discovery' && (
-          <DiscoveryFeed tracks={tracks} onPlayTrack={handlePlayTrack} onKlickTrack={handleKlickTrack} />
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-8 text-center">Descubrir Música</h2>
+            <DiscoveryFeed tracks={tracks} onPlayTrack={handlePlayTrack} onKlickTrack={handleKlickTrack} />
+          </div>
         )}
 
         {view === 'social' && (
-          <SocialWall posts={posts} onReact={handleReactPost} onCreatePost={handleCreatePost} />
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-8 text-center">Comunidad</h2>
+            <SocialWall posts={posts} onReact={handleReactPost} onCreatePost={handleCreatePost} />
+          </div>
         )}
 
         {view === 'live' && (
-          <LiveRooms rooms={rooms} onJoinRoom={handleJoinRoom} onCreateRoom={handleCreateRoom} />
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-8 text-center">Salas en Directo</h2>
+            <LiveRooms rooms={rooms} onJoinRoom={handleJoinRoom} onCreateRoom={handleCreateRoom} />
+          </div>
         )}
       </div>
 
       {/* Audio Player Fixed */}
       {currentTrack && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t">
-          <div className="max-w-4xl mx-auto p-4">
+        <div className="fixed bottom-0 left-0 right-0 glass-effect border-t border-white/20">
+          <div className="max-w-7xl mx-auto p-4">
             <AudioPlayer
               audioUrl={currentTrack.audio_url || ''}
               title={currentTrack.title}

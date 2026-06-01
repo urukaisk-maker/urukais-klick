@@ -31,56 +31,56 @@ export default function SocialPost({ id, user, content, track, mood, reactions, 
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+    <div className="glass-effect rounded-2xl p-6 mb-4 card-hover">
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold">
+        <div className="w-14 h-14 rounded-full btn-gradient flex items-center justify-center text-white font-bold text-xl shadow-lg">
           {user.charAt(0).toUpperCase()}
         </div>
 
         <div className="flex-1">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="font-semibold">{user}</span>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="font-bold text-white text-lg">{user}</span>
             {mood && (
               <span className="text-2xl">{moodEmojis[mood] || '🎵'}</span>
             )}
           </div>
 
-          <p className="text-gray-800 mb-4">{content}</p>
+          <p className="text-white/90 mb-4 text-lg">{content}</p>
 
           {track && (
-            <div className="bg-gray-50 rounded-lg p-4 mb-4">
+            <div className="bg-white/10 rounded-xl p-4 mb-4 backdrop-blur-sm border border-white/20">
               <div className="flex items-center gap-4">
                 {track.coverUrl ? (
                   <img
                     src={track.coverUrl}
                     alt={track.title}
-                    className="w-12 h-12 rounded object-cover"
+                    className="w-14 h-14 rounded-xl object-cover shadow-md"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                    <span className="text-white">🎵</span>
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+                    <span className="text-white text-xl">🎵</span>
                   </div>
                 )}
                 <div>
-                  <p className="font-semibold">{track.title}</p>
-                  <p className="text-gray-600 text-sm">{track.artist}</p>
+                  <p className="font-semibold text-white">{track.title}</p>
+                  <p className="text-white/70 text-sm">{track.artist}</p>
                 </div>
               </div>
             </div>
           )}
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <button
               onClick={() => onReact(id)}
-              className="text-gray-600 hover:text-purple-600 transition"
+              className="text-white/80 hover:text-white transition flex items-center gap-2 hover:scale-105 transform"
             >
-              👏 {reactions}
+              👏 <span className="font-semibold">{reactions}</span>
             </button>
             <button
               onClick={() => setShowReactions(!showReactions)}
-              className="text-gray-600 hover:text-indigo-600 transition"
+              className="text-white/80 hover:text-white transition flex items-center gap-2 hover:scale-105 transform"
             >
-              💬 Responder
+              💬 <span className="font-semibold">Responder</span>
             </button>
           </div>
         </div>
